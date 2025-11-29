@@ -22,11 +22,14 @@ services:
       - key: JWT_SECRET
         sync: false
       
-      - key: ML_SERVICE_URL
+      # ---------------------------------------------------------
+      # FIX: Use 'host' instead of 'url'
+      # ---------------------------------------------------------
+      - key: ML_SERVICE_HOST
         fromService:
           type: web
           name: medicine-ml-service
-          property: url
+          property: host
 
   # ----------------------------------------
   # Service 2: The Python ML Service
