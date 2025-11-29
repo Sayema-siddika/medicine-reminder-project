@@ -23,13 +23,13 @@ if (flutterVersionName == null) {
 }
 
 android {
-    namespace "com.example.medicine_reminder_app" // Verify this matches your package name
+    namespace "com.example.medicine_reminder_app"
     compileSdkVersion flutter.compileSdkVersion
     ndkVersion flutter.ndkVersion
 
     compileOptions {
-        // --- FIXED: Enable Java 8 features ---
-        coreLibraryDesugaringEnabled true 
+        // --- KEY FIX: Enable Java 8 features (Desugaring) ---
+        coreLibraryDesugaringEnabled true
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
     }
@@ -43,16 +43,23 @@ android {
     }
 
     defaultConfig {
+        // Ensure this ID matches what is in your AndroidManifest.xml
         applicationId "com.example.medicine_reminder_app"
-        minSdkVersion 21
+        
+        // flutter_local_notifications requires minSdk 21 or higher
+        minSdkVersion 21 
         targetSdkVersion flutter.targetSdkVersion
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
+        
+        // Helpful for larger apps with many dependencies
         multiDexEnabled true 
     }
 
     buildTypes {
         release {
+            // Using debug keys for signing to allow simple release builds via CI/CD
+            // For a real Play Store release, you would configure a keystore here.
             signingConfig signingConfigs.debug
         }
     }
@@ -63,7 +70,9 @@ flutter {
 }
 
 dependencies {
-    // --- FIXED: Add the library ---
+    // --- KEY FIX: Add the desugaring library ---
     coreLibraryDesugaring 'com.android.tools:desugar_jdk_libs:2.0.3'
+    
+    // Add multidex support
     implementation 'androidx.multidex:multidex:2.0.1' 
 }
