@@ -1,16 +1,40 @@
 import 'dart:convert';
+import 'dart:io'; // Required for Platform.isAndroid
 import 'package:http/http.dart' as http;
+import 'package:flutter/foundation.dart' show kIsWeb; // Required for kIsWeb
 
 class ApiService {
   // ------------------------------------------------------------
-  // CHOOSE YOUR BASE URL
+  // CONFIGURATION
   // ------------------------------------------------------------
   
-  // ✅ FOR CHROME/WEB (Use this one)
-  static const String baseUrl = 'http://localhost:5000/api';
+  // 1. The Live Render URL (Works everywhere)
+  static const String _prodUrl = 'https://medicine-reminder-project-1.onrender.com';
   
-  // ❌ FOR ANDROID EMULATOR (Keep commented out)
-  // static const String baseUrl = 'http://10.0.2.2:5000/api'; 
+  // 2. The Localhost URLs (For testing on your own computer later)
+  static const String _localUrlWeb = 'http://localhost:10000'; 
+  static const String _localUrlAndroid = 'http://10.0.2.2:10000'; 
+
+  // ------------------------------------------------------------
+  // SMART URL DETECTOR
+  // ------------------------------------------------------------
+  // This logic automatically picks the right URL based on the device.
+  // Currently, it just returns _prodUrl for everything because you are live!
+  static String get baseUrl {
+    // CURRENT MODE: PRODUCTION (Render)
+    return _prodUrl;
+
+    // DEBUG MODE: If you ever go back to localhost, uncomment this:
+    /*
+    if (kIsWeb) {
+      return _localUrlWeb;       // Chrome
+    } else if (Platform.isAndroid) {
+      return _localUrlAndroid;   // Android Emulator
+    } else {
+      return _localUrlWeb;       // iOS/Other
+    }
+    */
+  }
   
   static String? _token;
 
