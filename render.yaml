@@ -11,15 +11,22 @@ services:
     envVars:
       - key: NODE_ENV
         value: production
+
+      # ---------------------------------------------------------
+      # SECURE SETUP: 'sync: false' means you enter the password
+      # on the Render Website, not in this file.
+      # ---------------------------------------------------------
       - key: MONGO_URI
         sync: false
+      
       - key: JWT_SECRET
         sync: false
+      
       - key: ML_SERVICE_URL
         fromService:
           type: web
           name: medicine-ml-service
-          property: url              # <--- THIS WAS MISSING!
+          property: url
 
   # ----------------------------------------
   # Service 2: The Python ML Service
