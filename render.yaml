@@ -1,0 +1,32 @@
+services:
+  # ----------------------------------------
+  # Service 1: The Node.js Backend
+  # ----------------------------------------
+  - type: web
+    name: medicine-backend
+    env: node
+    rootDir: backend                 # Points to your "backend" folder
+    buildCommand: npm install
+    startCommand: node server.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: MONGO_URI
+        sync: false                  # You will enter this securely in Render Dashboard later
+      - key: JWT_SECRET
+        sync: false                  # You will enter this securely in Render Dashboard later
+      - key: ML_SERVICE_URL
+        fromService:
+          type: web
+          name: medicine-ml-service # Automatically connects to the ML service below
+
+  # ----------------------------------------
+  # Service 2: The Python ML Service
+  # ----------------------------------------
+  - type: web
+    name: medicine-ml-service
+    env: python
+    rootDir: ml-service              # Points to your "ml-service" folder
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py      # Or "gunicorn app:app" if you use Gunicorn
+    plan: free                       # Explicitly asks for the free tier

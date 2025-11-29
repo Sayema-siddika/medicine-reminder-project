@@ -1,0 +1,152 @@
+{
+  "overall_adherence": {
+    "total_doses": 500,
+    "taken": 383,
+    "missed": 117,
+    "adherence_rate": 76.6
+  },
+  "by_time_of_day": {
+    "Morning (6-12)": {
+      "total": 208,
+      "taken": 173,
+      "rate": 83.17
+    },
+    "Afternoon (12-18)": {
+      "total": 145,
+      "taken": 100,
+      "rate": 68.97
+    },
+    "Evening (18-24)": {
+      "total": 147,
+      "taken": 110,
+      "rate": 74.83
+    }
+  },
+  "by_day_of_week": {
+    "Monday": {
+      "total": 74,
+      "taken": 60,
+      "rate": 81.08
+    },
+    "Tuesday": {
+      "total": 67,
+      "taken": 59,
+      "rate": 88.06
+    },
+    "Wednesday": {
+      "total": 67,
+      "taken": 53,
+      "rate": 79.1
+    },
+    "Thursday": {
+      "total": 80,
+      "taken": 66,
+      "rate": 82.5
+    },
+    "Friday": {
+      "total": 73,
+      "taken": 61,
+      "rate": 83.56
+    },
+    "Saturday": {
+      "total": 76,
+      "taken": 42,
+      "rate": 55.26
+    },
+    "Sunday": {
+      "total": 63,
+      "taken": 42,
+      "rate": 66.67
+    }
+  },
+  "top_users": [
+    {
+      "user_id": "user_8",
+      "total_doses": 50,
+      "taken": 43,
+      "adherence_rate": 86.0
+    },
+    {
+      "user_id": "user_4",
+      "total_doses": 63,
+      "taken": 53,
+      "adherence_rate": 84.13
+    },
+    {
+      "user_id": "user_10",
+      "total_doses": 49,
+      "taken": 40,
+      "adherence_rate": 81.63
+    },
+    {
+      "user_id": "user_6",
+      "total_doses": 38,
+      "taken": 30,
+      "adherence_rate": 78.95
+    },
+    {
+      "user_id": "user_3",
+      "total_doses": 42,
+      "taken": 33,
+      "adherence_rate": 78.57
+    }
+  ],
+  "medication_comparison": [
+    {
+      "medication_id": "med_4",
+      "total_doses": 105,
+      "taken": 87,
+      "adherence_rate": 82.86
+    },
+    {
+      "medication_id": "med_3",
+      "total_doses": 104,
+      "taken": 80,
+      "adherence_rate": 76.92
+    },
+    {
+      "medication_id": "med_1",
+      "total_doses": 92,
+      "taken": 70,
+      "adherence_rate": 76.09
+    },
+    {
+      "medication_id": "med_5",
+      "total_doses": 102,
+      "taken": 77,
+      "adherence_rate": 75.49
+    },
+    {
+      "medication_id": "med_2",
+      "total_doses": 97,
+      "taken": 69,
+      "adherence_rate": 71.13
+    }
+  ],
+  "weekly_trends": [
+    {
+      "week": 24,
+      "total": 7,
+      "taken": 4,
+      "rate": 57.14
+    },
+    {
+      "week": 25,
+      "total": 7,
+      "taken": 5,
+      "rate": 71.43
+    },
+    {
+      "week": 26,
+      "total": 7,
+      "taken": 7,
+      "rate": 100.0
+    },
+    {
+      "week": 27,
+      "total": 7,
+      "taken": 6,
+      "rate": 85.71
+    }
+  ]
+}

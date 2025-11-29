@@ -1,0 +1,54 @@
+# ========================
+# 1. Global / System Files
+# ========================
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+*.log
+
+# ========================
+# 2. Node.js (Backend)
+# ========================
+# Massive dependency folder (never upload this!)
+node_modules/
+# Environment variables (SECURITY RISK: Keep this local only!)
+.env
+npm-debug.log
+
+# ========================
+# 3. Python (ML Service)
+# ========================
+# Virtual environment folder
+venv/
+.venv/
+env/
+# Compiled python files (garbage)
+__pycache__/
+*.pyc
+# ML Models (Optional: If your model.pkl is >100MB, git will reject it)
+# *.pkl 
+
+# ========================
+# 4. Flutter (Mobile App)
+# ========================
+# Flutter/Dart generated files
+.dart_tool/
+.packages
+.pub-cache/
+.flutter-plugins
+.flutter-plugins-dependencies
+
+# Android-specific build files
+android/build/
+android/.gradle/
+android/local.properties
+android/key.properties
+
+# iOS-specific build files
+ios/.symlinks/
+ios/Pods/
+ios/build/
+
+# General Build output
+build/

@@ -1,0 +1,38 @@
+{
+  "summary": {
+    "adherence_rate": 76.6,
+    "total_doses": 500,
+    "streak_days": 7
+  },
+  "weekly_progress": [
+    {
+      "day": "Mon",
+      "rate": 81.08
+    },
+    {
+      "day": "Tue",
+      "rate": 88.06
+    },
+    {
+      "day": "Wed",
+      "rate": 79.1
+    },
+    {
+      "day": "Thu",
+      "rate": 82.5
+    },
+    {
+      "day": "Fri",
+      "rate": 83.56
+    },
+    {
+      "day": "Sat",
+      "rate": 55.26
+    },
+    {
+      "day": "Sun",
+      "rate": 66.67
+    }
+  ],
+  "best_time": "Morning (6-12)"
+}
