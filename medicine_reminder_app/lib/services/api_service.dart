@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'dart:io'; // Required for Platform.isAndroid
+// Required for Platform.isAndroid
 import 'package:http/http.dart' as http;
 import 'package:flutter/foundation.dart' show kIsWeb; // Required for kIsWeb
 
