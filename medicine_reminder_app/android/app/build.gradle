@@ -24,8 +24,8 @@ if (flutterVersionName == null) {
 
 android {
     namespace "com.example.medicine_reminder_app"
-    compileSdk 34
-    ndkVersion "25.1.8937393"
+    compileSdk 36  // Updated from 34 to 36
+    ndkVersion "27.0.12077973"  // Updated from 25.1.8937393
 
     compileOptions {
         coreLibraryDesugaringEnabled true
@@ -44,7 +44,7 @@ android {
     defaultConfig {
         applicationId "com.example.medicine_reminder_app"
         minSdk 21
-        targetSdk 34
+        targetSdk 36  // Updated from 34 to 36
         versionCode flutterVersionCode.toInteger()
         versionName flutterVersionName
         multiDexEnabled true

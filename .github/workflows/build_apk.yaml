@@ -1,39 +1,86 @@
-name: Build APK
+name: Build Flutter APK
 
 on:
   push:
-    branches: [ "main" ]
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+  workflow_dispatch:
 
 jobs:
   build:
     runs-on: ubuntu-latest
-
-    steps:
-    - uses: actions/checkout@v3
     
-    - name: Set up Java
-      uses: actions/setup-java@v3
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: Setup Java
+      uses: actions/setup-java@v4
       with:
         distribution: 'zulu'
         java-version: '17'
-
-    - name: Set up Flutter
+        
+    - name: Setup Flutter
       uses: subosito/flutter-action@v2
       with:
+        flutter-version: '3.24.0'
         channel: 'stable'
     
-    - name: Get Dependencies
-      working-directory: ./medicine_reminder_app
+    - name: Verify Flutter installation
+      run: flutter doctor -v
+    
+    - name: Deep clean before build
+      run: |
+        flutter clean
+        rm -rf build/
+        rm -rf android/.gradle/
+        rm -rf android/app/build/
+        
+    - name: Get dependencies
       run: flutter pub get
-
-    # CHANGE 1: Use --debug instead of --release
-    - name: Build APK
-      working-directory: ./medicine_reminder_app
-      run: flutter build apk --debug
-
-    # CHANGE 2: Look for 'app-debug.apk' instead of 'app-release.apk'
-    - name: Upload APK
+      
+    - name: Verify MainActivity.kt
+      run: |
+        echo "Checking MainActivity.kt for v2 embedding..."
+        if grep -q "io.flutter.embedding.android.FlutterActivity" android/app/src/main/kotlin/com/example/medicine_reminder_app/MainActivity.kt; then
+          echo "✅ MainActivity.kt uses v2 embedding"
+        else
+          echo "❌ MainActivity.kt does NOT use v2 embedding!"
+          exit 1
+        fi
+    
+    - name: Remove conflicting .kts files if present
+      run: |
+        rm -f android/app/build.gradle.kts
+        rm -f android/build.gradle.kts
+        echo "✅ Cleaned up any .kts files"
+      
+    - name: Build APK (Debug first for faster feedback)
+      run: flutter build apk --debug --verbose
+      
+    - name: Build APK (Release)
+      run: flutter build apk --release --verbose
+      
+    - name: Upload Debug APK
       uses: actions/upload-artifact@v4
       with:
-        name: medicine-reminder-apk
-        path: medicine_reminder_app/build/app/outputs/flutter-apk/app-debug.apk
+        name: app-debug
+        path: build/app/outputs/flutter-apk/app-debug.apk
+        
+    - name: Upload Release APK
+      uses: actions/upload-artifact@v4
+      with:
+        name: app-release
+        path: build/app/outputs/flutter-apk/app-release.apk
+        
+    - name: Create Release
+      if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
+      uses: softprops/action-gh-release@v1
+      with:
+        tag_name: v1.0.${{ github.run_number }}
+        files: |
+          build/app/outputs/flutter-apk/app-debug.apk
+          build/app/outputs/flutter-apk/app-release.apk
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
